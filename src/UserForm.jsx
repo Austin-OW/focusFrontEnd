@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { createUser, updateUser } from './services/api';
 
 function UserForm ({ currentUser, onSave })  {
-    const [user, setUser] = useState({ name: '', email: '' });
+    const [user, setUser] = useState({ name: '', email: '', organization: '' });
 
     useEffect(() => {
         if (currentUser) {
@@ -24,7 +24,7 @@ function UserForm ({ currentUser, onSave })  {
             await createUser(user);
         }
         onSave();  // Call the onSave function to refresh the user list
-        setUser({ name: '', email: '' });
+        setUser({ name: '', email: '', organization: '' });
     };
 
     return (
@@ -36,6 +36,10 @@ function UserForm ({ currentUser, onSave })  {
             <div>
                 <label>Email:</label>
                 <input type="email" name="email" value={user.email} onChange={handleChange} />
+            </div>
+            <div>
+                <label>Organization:</label>
+                <input type="text" name="organization" value={user.organization} onChange={handleChange} />
             </div>
             <button type="submit">Save</button>
         </form>

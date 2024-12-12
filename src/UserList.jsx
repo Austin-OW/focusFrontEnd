@@ -20,6 +20,7 @@ function UserList ({ users, onEdit, fetchUsers }) {
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Org</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -27,9 +28,10 @@ function UserList ({ users, onEdit, fetchUsers }) {
                     {Array.isArray(users)?(
                         users.map(user => (
                         <tr key={user._id}>
-                            <td>{user._id}</td>
+                            <td>{user._id.substring(1,5)+"..."}</td>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
+                            <td>{user.organization}</td>
                             <td>
                                 <button onClick={() => onEdit(user)}>Edit</button>
                                 <button onClick={() => handleDelete(user._id)}>Delete</button>
